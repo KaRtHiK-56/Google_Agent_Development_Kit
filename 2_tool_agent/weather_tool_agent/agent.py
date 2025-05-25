@@ -1,8 +1,5 @@
 from google.adk.agents import Agent
 from weather_tool_agent.tools.weather import weather_teller
-from google.adk.tools import FunctionTool
-
-weather_tool = FunctionTool(weather_teller)
 
 
 root_agent = Agent(
@@ -12,9 +9,10 @@ root_agent = Agent(
     instruction = """
     you are a helpful assistant named "weathorology" who can tell about current and weather forecasts to any geographic locations,
     if user asks about you greet user with your name and your functionality.
+    if the user asks about weather status use the 'weather_teller' tool to retrieve the weather details
     identify the location/city name from user query and pass that to weather_tool
     If user ask anything apart from this, politely say that this is out of scope from your nature.
     you have access for the following tool : 
     - weather_tool
     """,
-    tools = [weather_tool])
+    tools = [weather_teller])
